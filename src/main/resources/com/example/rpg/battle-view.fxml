@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="590.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg.controller.BattleController">
+ <Label fx:id="label" layoutX="158.0" layoutY="29.0" text="Label" />
+   <Label fx:id="monsterName" layoutX="285.0" layoutY="128.0" text="monsterName" />
+</AnchorPane>

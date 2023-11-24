@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="590.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg.controller.StatusController">
+    <children>
+        <ImageView fitHeight="335.0" fitWidth="223.0" layoutX="156.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../../../../../Desktop/6.jpg" />
+            </image>
+        </ImageView>
+        <Label layoutX="519.0" layoutY="99.0" text="이름 : " />
+        <Label layoutX="519.0" layoutY="130.0" text="직업 : " />
+        <Label fx:id="user_name" layoutX="576.0" layoutY="99.0" text="" />
+        <Label fx:id="user_class" layoutX="578.0" layoutY="130.0" text="" />
+        <Label layoutX="680.0" layoutY="130.0" text="Lv : " />
+        <Label fx:id="user_lv" layoutX="739.0" layoutY="130.0" text="" />
+        <AnchorPane layoutX="512.0" layoutY="167.0">
+            <children>
+                <ProgressBar fx:id="hpBar" layoutY="16.0" prefHeight="20.0" prefWidth="264.0" progress="0.0" style="-fx-accent: #ee5050;" />
+                <Label layoutX="2.0" text="HP" />
+                <Label fx:id="user_hp" alignment="CENTER" layoutX="6.0" layoutY="18.0" prefHeight="16.0" prefWidth="258.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="511.0" layoutY="211.0">
+            <children>
+                <ProgressBar fx:id="mpBar" layoutY="16.0" prefHeight="20.0" prefWidth="264.0" progress="0.0" style="-fx-accent: skyblue;" />
+                <Label layoutX="2.0" text="MP" />
+                <Label fx:id="user_mp" alignment="CENTER" layoutX="2.0" layoutY="18.0" prefHeight="16.0" prefWidth="264.0" text="" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="512.0" layoutY="262.0">
+            <children>
+                <ProgressBar fx:id="expBar" layoutY="16.0" prefHeight="20.0" prefWidth="264.0" progress="0.0" style="-fx-accent: #5ee05e;" />
+                <Label layoutX="2.0" text="exp" />
+                <Label fx:id="user_exp" alignment="CENTER" layoutY="18.0" prefHeight="16.0" prefWidth="266.0" text="" />
+            </children>
+        </AnchorPane>
+        <Label layoutX="534.0" layoutY="327.0" text="STR" />
+        <Label fx:id="user_STR" layoutX="587.0" layoutY="327.0" text="" />
+        <Label layoutX="686.0" layoutY="327.0" text="DEX" />
+        <Label fx:id="user_DEX" layoutX="739.0" layoutY="327.0" text="" />
+        <Label layoutX="686.0" layoutY="389.0" text="INT" />
+        <Label fx:id="user_INT" layoutX="739.0" layoutY="389.0" text="" />
+        <Label layoutX="542.0" layoutY="389.0" text="LUK" />
+        <Label fx:id="user_LUK" layoutX="595.0" layoutY="389.0" text="" />
+        <Label layoutX="686.0" layoutY="464.0" text="스탯 포인트 : " />
+        <Label fx:id="user_extraStat" layoutX="765.0" layoutY="464.0" />
+        <Label layoutX="540.0" layoutY="464.0" text="소지금 : " />
+        <Label fx:id="user_money" layoutX="593.0" layoutY="464.0" text="" />
+        <Label layoutX="540.0" layoutY="522.0" text="무기 : " />
+        <Label fx:id="user_weapon" layoutX="593.0" layoutY="522.0" text="" />
+        <Label layoutX="686.0" layoutY="522.0" text="방어구 : " />
+        <Label fx:id="user_equip" layoutX="739.0" layoutY="522.0" text="" />
+      <Button fx:id="backStage" layoutX="34.0" layoutY="29.0" mnemonicParsing="false" onAction="#backStage" prefHeight="36.0" prefWidth="36.0" text="&lt;-" />
+      <Button fx:id="goHome" layoutX="78.0" layoutY="30.0" mnemonicParsing="false" onAction="#goHome" prefHeight="36.0" prefWidth="62.0" text="HOME" />
+    </children>
+</AnchorPane>

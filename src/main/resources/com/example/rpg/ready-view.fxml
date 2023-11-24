@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="590.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg.controller.ReadyController">
+    <Button fx:id="goBack" layoutX="16.0" layoutY="19.0" mnemonicParsing="false" onAction="#backStage" prefHeight="36.0" prefWidth="36.0" text="&lt;-" />
+    <Button fx:id="goHome" layoutX="56.0" layoutY="19.0" mnemonicParsing="false" onAction="#goHome" prefHeight="36.0" prefWidth="59.0" text="HOME" />
+    <Label fx:id="fieldName" layoutX="282.0" layoutY="88.0" prefHeight="59.0" prefWidth="248.0" text="fieldname" />
+   <Button fx:id="goHome1" layoutX="161.0" layoutY="475.0" mnemonicParsing="false" onAction="#showBattle" prefHeight="36.0" prefWidth="59.0" text="전투" />
+   <Button fx:id="goHome11" layoutX="328.0" layoutY="486.0" mnemonicParsing="false" onAction="#showStat" prefHeight="36.0" prefWidth="59.0" text="스탯" />
+   <Button fx:id="goHome111" layoutX="534.0" layoutY="493.0" mnemonicParsing="false" onAction="#showItemBox" prefHeight="36.0" prefWidth="59.0" text="아이템 박스" />
+
+</AnchorPane>
