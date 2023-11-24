@@ -30,7 +30,7 @@ public class IntroController {
     @FXML
     private TextField inputName;
 
-    ArrayList<Skill> playerSkillList = SkillDB.getInstance().getplayerSkillList();
+    ArrayList<Skill> playerSkillList = SkillDB.getInstance().getSkillList();
 
     @FXML
     protected void goMain() {

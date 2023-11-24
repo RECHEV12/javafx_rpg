@@ -8,76 +8,84 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="590.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg.controller.BattleController">
+<AnchorPane prefHeight="702.0" prefWidth="1066.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg.controller.BattleController">
  
-   <Label fx:id="monsterName" layoutX="697.0" layoutY="64.0" prefHeight="0.0" prefWidth="86.0" text="monsterName" />
-   <ImageView fx:id="userDice" fitHeight="76.0" fitWidth="77.0" layoutX="298.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+   <Label fx:id="monsterName" alignment="CENTER_RIGHT" layoutX="862.0" layoutY="72.0" prefHeight="0.0" prefWidth="86.0" text="monsterName" />
+   <ImageView fx:id="userDice" fitHeight="76.0" fitWidth="77.0" layoutX="310.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../../../images/1.jpg" />
       </image>
    </ImageView>
-   <ImageView fx:id="monsterDice" fitHeight="76.0" fitWidth="77.0" layoutX="494.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="monsterDice" fitHeight="76.0" fitWidth="77.0" layoutX="630.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../../../images/1.jpg" />
       </image>
    </ImageView>
-   <ImageView fx:id="monsterImg" fitHeight="159.0" fitWidth="159.0" layoutX="632.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="monsterImg" fitHeight="159.0" fitWidth="159.0" layoutX="768.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
       <image>
           <Image url="@../../../images/1.jpg" />
       </image>
    </ImageView>
-   <ImageView fx:id="userImg" fitHeight="159.0" fitWidth="159.0" layoutX="94.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="userImg" fitHeight="159.0" fitWidth="159.0" layoutX="94.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
       <image>
           <Image url="@../../../images/유저.jpg" />
       </image>
    </ImageView>
    <Label fx:id="userName" layoutX="159.0" layoutY="72.0" prefHeight="0.0" prefWidth="86.0" text="userName" />
    <Label fx:id="userLv" layoutX="94.0" layoutY="72.0" prefHeight="16.0" prefWidth="58.0" text="LV" />
-   <Label fx:id="monsterLv" layoutX="624.0" layoutY="64.0" prefHeight="16.0" prefWidth="58.0" text="LV" />
-   <AnchorPane layoutX="612.0" layoutY="107.0">
+   <Label fx:id="monsterLv" layoutX="747.0" layoutY="72.0" prefHeight="16.0" prefWidth="58.0" text="LV" />
+   <AnchorPane layoutX="747.0" layoutY="106.0">
       <children>
          <ProgressBar fx:id="monsterHpBar" prefWidth="200.0" progress="0.0" style="-fx-accent: #ee5050;" />
          <Label fx:id="monsterHpLabel" alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="16.0" prefWidth="200.0" text="dsd" />
       </children>
    </AnchorPane>
-   <AnchorPane layoutX="73.0" layoutY="118.0">
+   <AnchorPane layoutX="73.0" layoutY="132.0">
       <children>
          <ProgressBar fx:id="userMpBar" layoutX="1.0" prefWidth="200.0" progress="0.0" style="-fx-accent: skyblue;" />
-         <Label fx:id="userMpLabel" alignment="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="16.0" prefWidth="200.0" text="userName" />
+         <Label fx:id="userMpLabel" alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="16.0" prefWidth="200.0" text="userName" />
       </children>
    </AnchorPane>
-   <AnchorPane layoutX="74.0" layoutY="96.0">
+   <AnchorPane layoutX="74.0" layoutY="106.0">
       <children>
          <ProgressBar fx:id="userHpBar" prefWidth="200.0" progress="0.0" style="-fx-accent: #ee5050;" />
          <Label fx:id="userHpLabel" alignment="CENTER" layoutX="-1.0" layoutY="3.0" prefHeight="16.0" prefWidth="200.0" text="userName" />
       </children>
    </AnchorPane>
-   <VBox fx:id="battleLog" layoutX="93.0" layoutY="470.0" prefHeight="96.0" prefWidth="698.0" style="-fx-border-color: BLACK; -fx-border-width: 1,1,1,1" />
-   <Label fx:id="battleLogLabel" layoutX="93.0" layoutY="451.0" prefHeight="16.0" prefWidth="103.0" text="배틀 로그" />
-   <TabPane layoutX="93.0" layoutY="301.0" prefHeight="149.0" prefWidth="698.0" tabClosingPolicy="UNAVAILABLE">
+   <Label fx:id="battleLogLabel" layoutX="56.0" layoutY="532.0" prefHeight="16.0" prefWidth="103.0" text="배틀 로그" />
+   <TabPane layoutX="54.0" layoutY="301.0" prefHeight="229.0" prefWidth="953.0" tabClosingPolicy="UNAVAILABLE">
      <tabs>
-       <Tab text="skill">
+       <Tab text="행동(공격/방어)">
             <content>
-               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                     <ScrollPane prefHeight="122.0" prefWidth="698.0" />
-                  </children>
-               </AnchorPane>
+               <ScrollPane fx:id="scroll" prefHeight="184.0" prefWidth="953.0">
+                  <content>
+                     <HBox fx:id="skillTab" prefHeight="175.0" />
+                  </content></ScrollPane>
             </content>
        </Tab>
-       <Tab text="item">
-         <content>
-           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                     <ScrollPane prefHeight="122.0" prefWidth="698.0" />
-                  </children>
-               </AnchorPane>
-         </content>
-       </Tab>
+         <Tab text="사용 아이템">
+            <content>
+               <ScrollPane prefHeight="200.0" prefWidth="953.0">
+                  <content>
+                     <HBox fx:id="itemTab" prefHeight="175.0" />
+                  </content>
+               </ScrollPane>
+            </content>
+         </Tab>
      </tabs>
    </TabPane>
+   <ScrollPane layoutX="56.0" layoutY="548.0" prefHeight="113.0" prefWidth="953.0">
+      <content>
+         <VBox fx:id="battleLog" prefHeight="109.0" prefWidth="948.0" style="-fx-border-color: BLACK; -fx-border-width: 1,1,1,1" />
+      </content>
+   </ScrollPane>
+   <Label fx:id="monsterWeak" layoutX="964.0" layoutY="108.0" prefHeight="0.0" prefWidth="86.0" text="weak" />
+   <Label fx:id="mobSkillName" alignment="CENTER" layoutX="606.0" layoutY="160.0" prefHeight="16.0" prefWidth="125.0" text="" />
+   <Label fx:id="mobSkillDmg" alignment="CENTER" layoutX="606.0" layoutY="194.0" prefHeight="16.0" prefWidth="125.0" text="" />
+   <Label fx:id="Battle" alignment="CENTER" layoutX="502.0" layoutY="72.0" onMouseClicked="#doBattle" prefHeight="16.0" prefWidth="58.0" text="doBattle" />
 
 
 

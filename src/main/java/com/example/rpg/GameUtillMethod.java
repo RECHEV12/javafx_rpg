@@ -3,6 +3,7 @@ package com.example.rpg;
 
 import com.example.rpg.character.Class;
 import com.example.rpg.monster.Monster;
+import com.example.rpg.skill.Skill;
 
 import java.util.ArrayList;
 
@@ -19,10 +20,14 @@ public class GameUtillMethod {
         return (int) ((Math.random() * (b - a + 1)) + a);
     }
 
-    public static int myRound(double a, int b) {
-        return 1;
-
+    public static double myRound(double num, int n) {
+        int bai = 1;
+        for (int i = 0; i < n; i++) {
+            bai = 10 * bai;
+        }
+        return (double) Math.round(num * bai) / bai;
     }
+
     public static double random5perRare() {
         double a = 0;
         int ab = makeRandom(1, 100);
@@ -68,5 +73,23 @@ public class GameUtillMethod {
         a.setMonsterATK(a.getMonsterATK() +a.getMonsterLv());
 
 
+    }
+
+    public static Skill monsterChoiceSkill(ArrayList<Skill> list) {
+        int num = makeRandom(0, list.size() - 1);
+
+        Skill skill = list.get(num);
+
+        return skill;
+
+    }
+
+    public static int getMonsterDamage(Skill skr, Monster mob) {
+        double num =(skr.getPerStr() / (double)100);
+        return(int) myRound((mob.getMonsterATK()) * num,1);
+    }
+    public static int defDamage(Class user, Skill skr) {
+        double num =(skr.getPerDex() / (double)100);
+        return    (int)myRound((num * user.getStatDEX()),1);
     }
 }

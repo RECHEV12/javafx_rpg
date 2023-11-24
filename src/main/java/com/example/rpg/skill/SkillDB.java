@@ -65,9 +65,6 @@ public class SkillDB {
     }
 
 
-    public ArrayList<Skill> getplayerSkillList() {
-        return playerSkillList;
-    }
 
     public void setplayerSkillList(ArrayList<Skill> playerSkillList) {
         this.playerSkillList = playerSkillList;
