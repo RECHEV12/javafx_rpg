@@ -1,10 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="590.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg.controller.BattleController">
- <Label fx:id="label" layoutX="158.0" layoutY="29.0" text="Label" />
-   <Label fx:id="monsterName" layoutX="285.0" layoutY="128.0" text="monsterName" />
+ 
+   <Label fx:id="monsterName" layoutX="697.0" layoutY="64.0" prefHeight="0.0" prefWidth="86.0" text="monsterName" />
+   <ImageView fx:id="userDice" fitHeight="76.0" fitWidth="77.0" layoutX="298.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../images/1.jpg" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="monsterDice" fitHeight="76.0" fitWidth="77.0" layoutX="494.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../images/1.jpg" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="monsterImg" fitHeight="159.0" fitWidth="159.0" layoutX="632.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+          <Image url="@../../../images/1.jpg" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="userImg" fitHeight="159.0" fitWidth="159.0" layoutX="94.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+          <Image url="@../../../images/유저.jpg" />
+      </image>
+   </ImageView>
+   <Label fx:id="userName" layoutX="159.0" layoutY="72.0" prefHeight="0.0" prefWidth="86.0" text="userName" />
+   <Label fx:id="userLv" layoutX="94.0" layoutY="72.0" prefHeight="16.0" prefWidth="58.0" text="LV" />
+   <Label fx:id="monsterLv" layoutX="624.0" layoutY="64.0" prefHeight="16.0" prefWidth="58.0" text="LV" />
+   <AnchorPane layoutX="612.0" layoutY="107.0">
+      <children>
+         <ProgressBar fx:id="monsterHpBar" prefWidth="200.0" progress="0.0" style="-fx-accent: #ee5050;" />
+         <Label fx:id="monsterHpLabel" alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="16.0" prefWidth="200.0" text="dsd" />
+      </children>
+   </AnchorPane>
+   <AnchorPane layoutX="73.0" layoutY="118.0">
+      <children>
+         <ProgressBar fx:id="userMpBar" layoutX="1.0" prefWidth="200.0" progress="0.0" style="-fx-accent: skyblue;" />
+         <Label fx:id="userMpLabel" alignment="CENTER" layoutX="1.0" layoutY="1.0" prefHeight="16.0" prefWidth="200.0" text="userName" />
+      </children>
+   </AnchorPane>
+   <AnchorPane layoutX="74.0" layoutY="96.0">
+      <children>
+         <ProgressBar fx:id="userHpBar" prefWidth="200.0" progress="0.0" style="-fx-accent: #ee5050;" />
+         <Label fx:id="userHpLabel" alignment="CENTER" layoutX="-1.0" layoutY="3.0" prefHeight="16.0" prefWidth="200.0" text="userName" />
+      </children>
+   </AnchorPane>
+   <VBox fx:id="battleLog" layoutX="93.0" layoutY="470.0" prefHeight="96.0" prefWidth="698.0" style="-fx-border-color: BLACK; -fx-border-width: 1,1,1,1" />
+   <Label fx:id="battleLogLabel" layoutX="93.0" layoutY="451.0" prefHeight="16.0" prefWidth="103.0" text="배틀 로그" />
+   <TabPane layoutX="93.0" layoutY="301.0" prefHeight="149.0" prefWidth="698.0" tabClosingPolicy="UNAVAILABLE">
+     <tabs>
+       <Tab text="skill">
+            <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <ScrollPane prefHeight="122.0" prefWidth="698.0" />
+                  </children>
+               </AnchorPane>
+            </content>
+       </Tab>
+       <Tab text="item">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <ScrollPane prefHeight="122.0" prefWidth="698.0" />
+                  </children>
+               </AnchorPane>
+         </content>
+       </Tab>
+     </tabs>
+   </TabPane>
+
+
+
 </AnchorPane>
