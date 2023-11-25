@@ -119,7 +119,7 @@ public class BattleController {
         setMobHp();
 
         String mobImgRoot = "/images/" + nowMob.getMonsterName() + ".jpg";
-        System.out.println(mobImgRoot);
+
         Image mobImg = new Image(Objects.requireNonNull(getClass().getResource(mobImgRoot)).toExternalForm());
         monsterImg.setImage(mobImg);
 
@@ -505,7 +505,7 @@ public class BattleController {
                 attackFromPlayer(nowMob, userDmgTotal, logC, logD);
                 if (nowMob.getMonsterHP() == 0) {
                     logG.setText(nowMob.getMonsterName() + "을(를) 쓰러뜨렸습니다!");
-                    System.out.println(logG.getText());
+
                     listFilterAndAdd(movePlayerLabelList);
 
                 } else {
@@ -573,7 +573,7 @@ public class BattleController {
     }
 
     public void logAdd(ArrayList<Label> logList) {
-        System.out.println(logList);
+
         Timeline timeline = new Timeline();
 
         for (int i = 0; i < logList.size(); i++) {

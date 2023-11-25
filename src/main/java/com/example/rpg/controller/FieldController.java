@@ -18,7 +18,7 @@ public class FieldController {
 
     @FXML
     protected void goFirstField() {
-        nowFieldName = "드넓은 평원";
+        nowFieldName = "드넓은 평원 레벨 : 제한 없음";
         setNowMonsterList(1);
 
     }
@@ -29,7 +29,7 @@ public class FieldController {
             showAlertErr("레벨이 부족합니다");
             return;
         }
-        nowFieldName = "무너진 성터";
+        nowFieldName = "무너진 성터 레벨 : 10이상";
         setNowMonsterList(2);
 
     }
@@ -40,7 +40,7 @@ public class FieldController {
             showAlertErr("레벨이 부족합니다");
             return;
         }
-        nowFieldName = "옛 전쟁터";
+        nowFieldName = "옛 전쟁터 레벨 : 20이상";
         setNowMonsterList(3);
 
     }
@@ -51,7 +51,7 @@ public class FieldController {
             showAlertErr("레벨이 부족합니다");
             return;
         }
-        nowFieldName = "마왕성";
+        nowFieldName = "마왕성 레벨 : 30이상";
         setNowMonsterList(4);
 
     }
@@ -62,7 +62,7 @@ public class FieldController {
             showAlertErr("레벨이 부족합니다");
             return;
         }
-        nowFieldName = "보스전 : 대왕 슬라임";
+        nowFieldName = "보스전 : 대왕 슬라임 레벨 : 10이상";
         setNowMonsterList(5);
 
     }
@@ -73,7 +73,7 @@ public class FieldController {
             showAlertErr("레벨이 부족합니다");
             return;
         }
-        nowFieldName = "보스전 : 킹 고블린";
+        nowFieldName = "보스전 : 킹 고블린 레벨 : 20이상";
         setNowMonsterList(6);
 
     }
@@ -84,7 +84,7 @@ public class FieldController {
             showAlertErr("레벨이 부족합니다");
             return;
         }
-        nowFieldName = "보스전 : 거대 골렘";
+        nowFieldName = "보스전 : 거대 골렘 레벨 : 30이상";
         setNowMonsterList(7);
 
     }
@@ -95,7 +95,7 @@ public class FieldController {
             showAlertErr("레벨이 부족합니다");
             return;
         }
-        nowFieldName = "보스전 : 드래곤";
+        nowFieldName = "보스전 : 드래곤 레벨 : 40";
         setNowMonsterList(8);
 
     }
@@ -114,7 +114,9 @@ public class FieldController {
     @FXML
     public void lvUPUPUP() {
         user.setLv(user.getLv() + 1);
-        System.out.println(user.getLv());
+        userAddSkill(user);
+
+
     }
 
     @FXML

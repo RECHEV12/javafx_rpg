@@ -133,7 +133,7 @@ public class GameUtillMethod {
                 temp.add(it);
             }
         }
-        System.out.println(temp);
+
 
         int b = random5perInt();
         if (b == 1) {

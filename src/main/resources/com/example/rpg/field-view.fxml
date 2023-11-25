@@ -9,13 +9,13 @@
         <Button fx:id="goBack" layoutX="16.0" layoutY="19.0" mnemonicParsing="false" onAction="#backStage" prefHeight="36.0" prefWidth="36.0" text="&lt;-" />
         <Button fx:id="goHome" layoutX="56.0" layoutY="19.0" mnemonicParsing="false" onAction="#goHome" prefHeight="36.0" prefWidth="59.0" text="HOME" />
         <Label fx:id="label" layoutX="158.0" layoutY="29.0" onMouseClicked="#lvUPUPUP" text="비밀의 버섯 " />
-        <Button layoutX="75.0" layoutY="178.0" mnemonicParsing="false" onAction="#goFirstField" text="드넓은 평원" />
-        <Button layoutX="289.0" layoutY="178.0" mnemonicParsing="false" onAction="#goSecondField" text="무너진 성터" />
-        <Button layoutX="470.0" layoutY="178.0" mnemonicParsing="false" onAction="#goThirdField" text="옛 전쟁터" />
-        <Button layoutX="635.0" layoutY="178.0" mnemonicParsing="false" onAction="#goFourthField" text="마왕성" />
-        <Button layoutX="75.0" layoutY="451.0" mnemonicParsing="false" onAction="#goFifthField" text="대왕 슬라임" />
-        <Button layoutX="273.0" layoutY="451.0" mnemonicParsing="false" onAction="#goSixesField" prefHeight="22.0" prefWidth="80.0" text="킹 고블린" />
-        <Button layoutX="487.0" layoutY="451.0" mnemonicParsing="false" onAction="#goSeventhField" prefHeight="22.0" prefWidth="68.0" text="거대 골렘" />
-        <Button layoutX="635.0" layoutY="451.0" mnemonicParsing="false" onAction="#goEighthField" prefHeight="15.0" prefWidth="59.0" text="드래곤" />
+        <Button layoutX="75.0" layoutY="178.0" mnemonicParsing="false" onAction="#goFirstField" text="드넓은 평원 레벨 : 제한 없음" />
+        <Button layoutX="289.0" layoutY="178.0" mnemonicParsing="false" onAction="#goSecondField" text= "무너진 성터 레벨 : 10이상" />
+        <Button layoutX="470.0" layoutY="178.0" mnemonicParsing="false" onAction="#goThirdField" text="옛 전쟁터 레벨 : 20이상" />
+        <Button layoutX="635.0" layoutY="178.0" mnemonicParsing="false" onAction="#goFourthField" text= "마왕성 레벨 : 30이상" />
+        <Button layoutX="75.0" layoutY="451.0" mnemonicParsing="false" onAction="#goFifthField" text= "보스전 : 대왕 슬라임 레벨 : 10이상" />
+        <Button layoutX="273.0" layoutY="451.0" mnemonicParsing="false" onAction="#goSixesField" prefHeight="22.0" prefWidth="80.0" text="보스전 : 킹 고블린 레벨 : 20이상" />
+        <Button layoutX="487.0" layoutY="451.0" mnemonicParsing="false" onAction="#goSeventhField" prefHeight="22.0" prefWidth="68.0" text="보스전 : 거대 골렘 레벨 : 30이상" />
+        <Button layoutX="635.0" layoutY="451.0" mnemonicParsing="false" onAction="#goEighthField" prefHeight="15.0" prefWidth="59.0" text="보스전 : 드래곤 레벨 : 40" />
     </children>
 </AnchorPane>

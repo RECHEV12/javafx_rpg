@@ -79,7 +79,6 @@ public class BattleResultController {
 
             expLabel.setText("경험치를 " + exp + " 획득하였습니다!");
             if (user.getExp() >= user.getNextExp()) {
-                System.out.println(user.getPlayerClass());
                 levelUP(user);
                 user.setExp(user.getExp() - user.getNextExp());
                 user.setNextExp(getNextExp(user.getLv()));
@@ -142,7 +141,7 @@ public class BattleResultController {
     }
 
     public void logAdd(ArrayList<Label> logList) {
-        System.out.println(logList);
+
         Timeline timeline = new Timeline();
 
         for (int i = 0; i < logList.size(); i++) {
