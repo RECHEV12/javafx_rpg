@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="702.0" prefWidth="1066.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg.controller.BattleController">
  
@@ -55,12 +57,12 @@
          <Label fx:id="userHpLabel" alignment="CENTER" layoutX="-1.0" layoutY="3.0" prefHeight="16.0" prefWidth="200.0" text="userName" />
       </children>
    </AnchorPane>
-   <Label fx:id="battleLogLabel" layoutX="56.0" layoutY="532.0" prefHeight="16.0" prefWidth="103.0" text="배틀 로그" />
-   <TabPane layoutX="54.0" layoutY="301.0" prefHeight="229.0" prefWidth="953.0" tabClosingPolicy="UNAVAILABLE">
+   <Label fx:id="battleLogLabel" layoutX="56.0" layoutY="505.0" prefHeight="16.0" prefWidth="103.0" text="배틀 로그" />
+   <TabPane layoutX="54.0" layoutY="301.0" prefHeight="204.0" prefWidth="953.0" tabClosingPolicy="UNAVAILABLE">
      <tabs>
        <Tab text="행동(공격/방어)">
             <content>
-               <ScrollPane fx:id="scroll" prefHeight="184.0" prefWidth="953.0">
+               <ScrollPane fx:id="scroll" prefHeight="184.0">
                   <content>
                      <HBox fx:id="skillTab" prefHeight="175.0" />
                   </content></ScrollPane>
@@ -68,7 +70,7 @@
        </Tab>
          <Tab text="사용 아이템">
             <content>
-               <ScrollPane prefHeight="200.0" prefWidth="953.0">
+               <ScrollPane prefHeight="184.0">
                   <content>
                      <HBox fx:id="itemTab" prefHeight="175.0" />
                   </content>
@@ -77,15 +79,25 @@
          </Tab>
      </tabs>
    </TabPane>
-   <ScrollPane layoutX="56.0" layoutY="548.0" prefHeight="113.0" prefWidth="953.0">
+   <ScrollPane layoutX="56.0" layoutY="519.0" prefHeight="142.0" prefWidth="953.0">
       <content>
-         <VBox fx:id="battleLog" prefHeight="109.0" prefWidth="948.0" style="-fx-border-color: BLACK; -fx-border-width: 1,1,1,1" />
+         <VBox fx:id="battleLog" prefHeight="140.0" prefWidth="948.0" style="-fx-border-color: BLACK; -fx-border-width: 1,1,1,1" />
       </content>
    </ScrollPane>
    <Label fx:id="monsterWeak" layoutX="964.0" layoutY="108.0" prefHeight="0.0" prefWidth="86.0" text="weak" />
    <Label fx:id="mobSkillName" alignment="CENTER" layoutX="606.0" layoutY="160.0" prefHeight="16.0" prefWidth="125.0" text="" />
    <Label fx:id="mobSkillDmg" alignment="CENTER" layoutX="606.0" layoutY="194.0" prefHeight="16.0" prefWidth="125.0" text="" />
-   <Label fx:id="Battle" alignment="CENTER" layoutX="502.0" layoutY="72.0" onMouseClicked="#doBattle" prefHeight="16.0" prefWidth="58.0" text="doBattle" />
+   <Label fx:id="Battle" alignment="CENTER" layoutX="466.0" layoutY="62.0" onMouseClicked="#doBattle" prefHeight="37.0" prefWidth="134.0" text="전투 시작">
+      <font>
+         <Font size="24.0" />
+      </font></Label>
+   <AnchorPane layoutX="73.0" layoutY="276.0">
+      <children>
+         <ProgressBar fx:id="userExpBar" layoutX="1.0" prefWidth="200.0" progress="0.0" style="-fx-accent: #5ee05e;" />
+         <Label fx:id="userExpLabel" alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="16.0" prefWidth="200.0" text="userName" />
+      </children>
+   </AnchorPane>
+   <Button fx:id="runBattle" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="77.0" text="도망친다" onAction="#runBattle"/>
 
 
 

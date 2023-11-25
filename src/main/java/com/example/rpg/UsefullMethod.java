@@ -2,17 +2,18 @@ package com.example.rpg;
 
 import com.example.rpg.controller.*;
 import com.example.rpg.item.Item;
+import com.example.rpg.monster.Monster;
 import com.example.rpg.skill.Skill;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
+import com.example.rpg.character.Class;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-import static com.example.rpg.GameUtillMethod.user;
+import static com.example.rpg.GameUtillMethod.*;
 
 /**
  * 화면 전환 메소드
@@ -140,6 +141,22 @@ public class UsefullMethod {
             throw new RuntimeException(e);
         }
     }
+    public static void goBattleRst(Label nowLabel) {
+        Stage stage = (Stage) nowLabel.getScene().getWindow();
+        startStage = stage.getTitle();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("battleResult-view.fxml"));
+
+        try {
+            Scene scene = new Scene(fxmlLoader.load());
+            BattleResultController brc = fxmlLoader.getController();
+            brc.endBattle();
+            stage.setScene(scene);
+            stage.setTitle("battleResult");
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static void goBack(Label nowLabel) {
         String fx = startStage + "-view.fxml";
         Stage stage = (Stage) nowLabel.getScene().getWindow();
@@ -260,4 +277,6 @@ public class UsefullMethod {
         alert.show();
 
     }
+
+
 }

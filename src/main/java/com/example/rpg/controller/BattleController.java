@@ -1,13 +1,12 @@
 package com.example.rpg.controller;
 
-import com.example.rpg.GameUtillMethod;
 import com.example.rpg.item.Item;
 import com.example.rpg.monster.Monster;
 import com.example.rpg.skill.Skill;
 import com.example.rpg.skill.SkillDB;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
-import javafx.animation.PauseTransition;
+
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -23,8 +22,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import static com.example.rpg.GameUtillMethod.*;
-import static com.example.rpg.UsefullMethod.changeHome;
-import static com.example.rpg.UsefullMethod.goBack;
+import static com.example.rpg.UsefullMethod.*;
 
 public class BattleController {
 
@@ -54,15 +52,19 @@ public class BattleController {
     @FXML
     private ProgressBar userMpBar;
     @FXML
+    private ProgressBar userExpBar;
+    @FXML
     private Label userHpLabel;
     @FXML
     private Label userMpLabel;
     @FXML
-    private ScrollPane scroll;
+    private Label userExpLabel;
     @FXML
     private HBox skillTab;
     @FXML
     private HBox itemTab;
+    @FXML
+    private ImageView userDice;
 
     @FXML
     private Label Battle;
@@ -71,83 +73,17 @@ public class BattleController {
 
     int mobMaxHP = 0;
     int mobDmgTotal = 0;
+    int userDmgTotal = 0;
+    int nowTurn = 1;
+    int monsterDiceNum = 1;
+    int playerDiceNum = 1;
 
     ArrayList<Skill> monsterSkillList = new ArrayList<>();
     ArrayList<Skill> allSkillList = SkillDB.getInstance().getSkillList();
 
 
-    int logCounter = 1;
-    Label temp = new Label();
-
-    @FXML
-    public void showMonster() {
-        setMob();
-        monsterLv.setText("Lv." + nowMob.getMonsterLv());
-
-        mobMaxHP = nowMob.getMonsterHP();
-        setMobHp();
-
-        String mobImgRoot = "/images/" + nowMob.getMonsterName() + ".jpg";
-        Image mobImg = new Image(Objects.requireNonNull(getClass().getResource(mobImgRoot)).toExternalForm());
-        monsterImg.setImage(mobImg);
-
-        for (Skill skill : allSkillList) {
-            if (skill.getClassType().equals(nowMob.getMonsterName())) {
-                monsterSkillList.add(skill);
-            }
-        }
-
-
-        userName.setText(user.getPlayerName());
-        setUserHp();
-        setUserMp();
-        setUserSkill();
-        setUserItem();
-    }
-
-    @FXML
-    public void doBattle() {
-        Skill nowSkill = monsterChoiceSkill(monsterSkillList);
-        mobSkillName.setText(nowSkill.getSkillName());
-        mobDmgTotal = getMonsterDamage(nowSkill, nowMob);
-        mobSkillDmg.setText("예상 대미지 : " + mobDmgTotal);
-        int monsterDiceNum = makeRandom(1, 6);
-
-        String mobDice = "/images/" + monsterDiceNum + ".jpg";
-        Image mobImg = new Image(Objects.requireNonNull(getClass().getResource(mobDice)).toExternalForm());
-        monsterDice.setImage(mobImg);
-        Battle.setDisable(true);
-
-    }
-
-    @FXML
-    public void endBattle() {
-        //todo 각종 데이터 리셋
-    }
-
-//    private static void performAction() {
-//        boolean actionExecuted = false;
-//        // Perform some action
-//        if (actionExecuted) {
-//            return;
-//        }
-//
-//        // Mark the action as executed
-//
-//        // Create a 1-second pause
-//        PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
-//        pauseTransition.setOnFinished(event -> {
-//            // Code to be executed after the 1-second pause
-//            System.out.println("After 1-second pause: Action completed!");
-//        });
-//
-//        // Start the pause transition
-//        pauseTransition.play();
-//        actionExecuted = true;
-//    }
-
     public void setMob() {
-        String mobName = "";
+        String mobName;
         if (nowMob.getMonsterName() == null) {
 
             nowMob = nowMonsterList.get(makeRandom(0, nowMonsterList.size() - 1));
@@ -173,23 +109,142 @@ public class BattleController {
 
     }
 
+    @FXML
+    public void showMonster() {
+        nowTurn = 1;
+        setMob();
+        monsterLv.setText("Lv." + nowMob.getMonsterLv());
+
+        mobMaxHP = nowMob.getMonsterHP();
+        setMobHp();
+
+        String mobImgRoot = "/images/" + nowMob.getMonsterName() + ".jpg";
+        System.out.println(mobImgRoot);
+        Image mobImg = new Image(Objects.requireNonNull(getClass().getResource(mobImgRoot)).toExternalForm());
+        monsterImg.setImage(mobImg);
+
+        for (Skill skill : allSkillList) {
+            if (skill.getClassType().equals(nowMob.getMonsterName())) {
+                monsterSkillList.add(skill);
+            }
+        }
+
+
+        userName.setText(user.getPlayerName());
+        setUserHp();
+        setUserMp();
+        setUserExp();
+        setUserSkill();
+        setUserItem();
+    }
+    public void runBattle(){
+        nowMob = new Monster();
+        goReady(monsterHpLabel);
+    }
+    @FXML
+    public void doBattle() {
+        if (user.getStatNowHP() == 0){
+            changeHome(monsterHpLabel);
+        }
+        if (nowMob.getMonsterHP() == 0) {
+            nowTurn = 1;
+            goBattleRst(monsterHpLabel);
+        } else {
+            Skill nowSkill = monsterChoiceSkill(monsterSkillList);
+            mobSkillName.setText(nowSkill.getSkillName());
+            mobDmgTotal = getMonsterDamage(nowSkill, nowMob);
+            mobSkillDmg.setText("예상 대미지 : " + mobDmgTotal);
+
+            monsterDiceNum = makeRandom(1, 6);
+            String mobDice = "/images/" + monsterDiceNum + ".jpg";
+            Image mobImg = new Image(Objects.requireNonNull(getClass().getResource(mobDice)).toExternalForm());
+            monsterDice.setImage(mobImg);
+            Battle.setDisable(true);
+
+            Label cutLineLabel = new Label();
+            Label showTurnLabel = new Label();
+            Label monsterDiceTurnLabel = new Label();
+
+            cutLineLabel.setText("-----------------------------------------------------------");
+            showTurnLabel.setText("현재 : " + nowTurn + "턴");
+            monsterDiceTurnLabel.setText(nowMob.getMonsterName() + "의 행동 속도는 " + monsterDiceNum + "!!");
+
+            ArrayList<Label> doBattleLog = new ArrayList<>();
+            doBattleLog.add(cutLineLabel);
+            doBattleLog.add(showTurnLabel);
+            doBattleLog.add(monsterDiceTurnLabel);
+            logAdd(doBattleLog);
+
+            nowTurn++;
+        }
+    }
+
+
     public void setMobHp() {
         double monsterHpBarNum = (double) nowMob.getMonsterHP() / mobMaxHP;
-        monsterHpBar.setProgress(monsterHpBarNum);
+        if (monsterHpBarNum <= 0) {
+            monsterHpBarNum = 0;
+        }
+
+        Timeline timeline = new Timeline();
+
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), new KeyValue(monsterHpBar.progressProperty(), monsterHpBarNum));
+
+        timeline.getKeyFrames().add(keyFrame);
+
+        timeline.play();
+
         monsterHpLabel.setText(nowMob.getMonsterHP() + "/" + mobMaxHP);
 
     }
 
     public void setUserHp() {
         double userHpBarNum = (double) user.getStatNowHP() / user.getStatMaxHP();
-        userHpBar.setProgress(userHpBarNum);
+        if (userHpBarNum <= 0) {
+            userHpBarNum = 0;
+        }
+
+        Timeline timeline = new Timeline();
+
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), new KeyValue(userHpBar.progressProperty(), userHpBarNum));
+
+        timeline.getKeyFrames().add(keyFrame);
+
+        timeline.play();
+
         userHpLabel.setText(user.getStatNowHP() + "/" + user.getStatMaxHP());
+
+    }
+
+    public void setUserExp() {
+        double userExpBarNum = (double) user.getExp() / user.getNextExp();
+
+        Timeline timeline = new Timeline();
+
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0), new KeyValue(userExpBar.progressProperty(), userExpBarNum));
+
+        timeline.getKeyFrames().add(keyFrame);
+
+        timeline.play();
+
+        userExpLabel.setText(user.getExp() + "/" + user.getNextExp());
+
 
     }
 
     public void setUserMp() {
         double userMpBarNum = (double) user.getStatNowMP() / user.getStatMaxMP();
-        userMpBar.setProgress(userMpBarNum);
+        if (userMpBarNum <= 0) {
+            userMpBarNum = 0;
+        }
+        Timeline timeline = new Timeline();
+
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), new KeyValue(userMpBar.progressProperty(), userMpBarNum));
+
+        timeline.getKeyFrames().add(keyFrame);
+
+        timeline.play();
+
         userMpLabel.setText(user.getStatNowMP() + "/" + user.getStatMaxMP());
 
     }
@@ -262,8 +317,8 @@ public class BattleController {
 
             skillTab.getChildren().add(mainSet);
         }
-        System.out.println(skillTab.getPrefWidth());
-        System.out.println(skillTab.getPrefHeight());
+
+
     }
 
     public void setUserItem() {
@@ -337,35 +392,218 @@ public class BattleController {
             button.setText("사용");
             button.setPrefWidth(setMP.getPrefWidth());
             button.setAlignment(Pos.CENTER);
+            button.setOnAction(event -> userItem(item));
 
             mainSet.getChildren().addAll(itemName, secondBox, button);
             itemTab.getChildren().add(mainSet);
         }
-        System.out.println(itemTab.getPrefWidth());
-        System.out.println(itemTab.getPrefHeight());
+
+
+    }
+
+    public void userItem(Item item) {
+        if (!Battle.isDisable()){
+            showAlertWarn("전투 시작을 눌러주세요");
+            return;
+        }
+        ArrayList<Label> temp = new ArrayList<>();
+
+        user.setStatMaxHP(user.getStatMaxHP() + item.getPlusMaxHP());
+        user.setStatMaxMP(user.getStatMaxMP() + item.getPlusMaxMP());
+
+        if (user.getStatNowHP() + item.getPlusNowHP() >= user.getStatMaxHP()) {
+            user.setStatNowHP(user.getStatMaxHP());
+        } else {
+            user.setStatNowHP(user.getStatNowHP() + item.getPlusNowHP());
+        }
+
+        if (user.getStatNowMP() + item.getPlusNowMP() >= user.getStatMaxMP()) {
+            user.setStatNowMP(user.getStatMaxMP());
+        } else {
+
+            user.setStatNowMP(user.getStatNowMP() + item.getPlusNowMP());
+        }
+        user.getItemsList().remove(item);
+        Label itemName = new Label();
+        itemName.setText(user.getPlayerName() + "은(는) " + item.getItemName() + "을(를) 사용했다!");
+
+        Label logA = new Label();
+        temp.add(itemName);
+        temp.add(logA);
+
+        logA.setText(user.getPlayerName() + "은(는) " + mobDmgTotal + "의 대미지를 입었다.");
+        user.setStatNowHP(user.getStatNowHP() - mobDmgTotal);
+
+        listFilterAndAdd(temp);
+        setUserHp();
+        setUserMp();
+        itemTab.getChildren().clear();
+        setUserItem();
     }
 
     public void movePlayer(Skill skill) {
+
+        if (!Battle.isDisable()){
+            showAlertWarn("전투 시작을 눌러주세요");
+            return;
+        }
+        if (user.getStatNowMP() < skill.getUseMp()) {
+            showAlertErr("마나가 부족합니다.");
+            return;
+        }
+        user.setStatNowMP(user.getStatNowMP() - skill.getUseMp());
+        setUserMp();
+        ArrayList<Label> movePlayerLabelList = new ArrayList<>();
+
         if (skill.getSkillType().equals("방어")) {
             int defDamage = defDamage(user, skill);
-
-
             Label logA = new Label();
+            Label logB = new Label();
+            Label logG = new Label();
+
+            logA.setText(skill.getSkillName() + "은(는)" + defDamage + "대미지를 방어할 수 있다!");
+
             if (defDamage >= mobDmgTotal) {
-                logA.setText(user.getPlayerName() + "은(는) 모든 대미지를 방어했다.");
-                System.out.println(logA.getText());
-//logA추가 -> 턴 종료
+                logB.setText(user.getPlayerName() + "은(는) 모든 대미지를 방어했다.");
+
             } else {
-                logA.setText(defDamage + "대미지 방어 | " + user.getPlayerName() + "은(는) " + (mobDmgTotal - defDamage) + "의 대미지를 입었다.");
-                user.setStatNowHP(user.getStatNowHP()-(mobDmgTotal - defDamage));
+                logB.setText(user.getPlayerName() + "은(는) " + (mobDmgTotal - defDamage) + "의 대미지를 입었다.");
+                user.setStatNowHP(user.getStatNowHP() - (mobDmgTotal - defDamage));
+                if (user.getStatNowHP() <= 0) {
+                    user.setStatNowHP(0);
+                    user.setExp(0);
+                    logG.setText("죽었습니다. 경험치가 0이 되고, 마을로 돌아갑니다.");
+                    listFilterAndAdd(movePlayerLabelList);
+                }
                 setUserHp();
-//logA추가 -> 대미지 계산 후 -> 턴종료
             }
+            movePlayerLabelList.add(logA);
+            movePlayerLabelList.add(logB);
+            movePlayerLabelList.add(logG);
+            listFilterAndAdd(movePlayerLabelList);
+
 
         } else {
+            userDmgTotal = getUserDamage(user, skill, nowMob);
+
+            playerDiceNum = makeRandom(1, 6);
+            String mobDice = "/images/" + playerDiceNum + ".jpg";
+            Image mobImg = new Image(Objects.requireNonNull(getClass().getResource(mobDice)).toExternalForm());
+            userDice.setImage(mobImg);
+            Label logA = new Label();
+            Label logB = new Label();
+            Label logC = new Label();
+            Label logD = new Label();
+            Label logE = new Label();
+            Label logF = new Label();
+            Label logG = new Label();
+            Label logH = new Label();
+            movePlayerLabelList.add(logA);
+            movePlayerLabelList.add(logB);
+            movePlayerLabelList.add(logC);
+            movePlayerLabelList.add(logD);
+            movePlayerLabelList.add(logE);
+            movePlayerLabelList.add(logF);
+            movePlayerLabelList.add(logG);
+            movePlayerLabelList.add(logH);
+            logA.setText(user.getPlayerName() + "의 행동속도는 " + playerDiceNum + "!!");
+            logH.setText("턴 종료. 다음턴으로 넘어갑니다");
+            if (playerDiceNum >= monsterDiceNum) {
+                logB.setText(user.getPlayerName() + "의 선공!");
+                attackFromPlayer(nowMob, userDmgTotal, logC, logD);
+                if (nowMob.getMonsterHP() == 0) {
+                    logG.setText(nowMob.getMonsterName() + "을(를) 쓰러뜨렸습니다!");
+                    System.out.println(logG.getText());
+                    listFilterAndAdd(movePlayerLabelList);
+
+                } else {
+                    attackFromMob(nowMob, userDmgTotal, logE, logF);
+                    if (user.getStatNowHP() == 0) {
+                        user.setExp(0);
+                        logG.setText("죽었습니다. 경험치가 0이 되고, 마을로 돌아갑니다.");
+                    }
+                    listFilterAndAdd(movePlayerLabelList);
+
+                }
+            } else {
+                logB.setText(nowMob.getMonsterName() + "의 선공!");
+                attackFromMob(nowMob, userDmgTotal, logC, logD);
+                if (user.getStatNowHP() == 0) {
+                    user.setExp(0);
+                    logG.setText("죽었습니다. 경험치가 0이 되고, 마을로 돌아갑니다.");
+                    listFilterAndAdd(movePlayerLabelList);
+                } else {
+                    attackFromPlayer(nowMob, userDmgTotal, logE, logF);
+                    if (nowMob.getMonsterHP() == 0) {
+                        logG.setText(nowMob.getMonsterName() + "을(를) 쓰러뜨렸습니다!");
+                    }
+                    listFilterAndAdd(movePlayerLabelList);
+                }
+            }
 
         }
 
-        doBattle();
+    }
+
+    public void attackFromPlayer(Monster mob, int dmg, Label a, Label b) {
+        int result = 0;
+
+        if (!(mob.getMonsterHP() - dmg <= 0)) {
+            result = mob.getMonsterHP() - dmg;
+        }
+        mob.setMonsterHP(result);
+        setMobHp();
+        a.setText(user.getPlayerName() + "의 " + dmg + "대미지!!");
+        b.setText(mob.getMonsterName() + "은(는) " + dmg + "대미지를 입어 체력이 " + mob.getMonsterHP() + "이(가) 되었다!");
+    }
+
+    public void attackFromMob(Monster mob, int dmg, Label a, Label b) {
+        int result = 0;
+        if (!(user.getStatNowHP() - mobDmgTotal <= 0)) {
+            result = user.getStatNowHP() - mobDmgTotal;
+        }
+        user.setStatNowHP(result);
+        setUserHp();
+        a.setText(mob.getMonsterName() + "의 " + dmg + "대미지!!");
+        b.setText(user.getPlayerName() + "은(는) " + mobDmgTotal + "의 대미지를 입어 체력이 " + user.getStatNowHP() + "이(가) 되었다.");
+    }
+
+    public void listFilterAndAdd(ArrayList<Label> list) {
+        ArrayList<Label> filteredList = new ArrayList<>();
+
+        for (Label label : list) {
+            if (!label.getText().isEmpty()) {
+                filteredList.add(label);
+            }
+        }
+
+        logAdd(filteredList);
+    }
+
+    public void logAdd(ArrayList<Label> logList) {
+        System.out.println(logList);
+        Timeline timeline = new Timeline();
+
+        for (int i = 0; i < logList.size(); i++) {
+            final int index = i;
+
+            KeyFrame keyFrame = new KeyFrame(Duration.seconds(i + 1), event -> {
+                battleLog.getChildren().add(logList.get(index));
+            });
+
+            timeline.getKeyFrames().add(keyFrame);
+        }
+
+        timeline.setOnFinished(event -> {
+            if (!logList.isEmpty() && !logList.get(0).getText().equals("-----------------------------------------------------------")) {
+                doBattle();
+            }
+
+        });
+
+        timeline.play();
+
     }
 }
+
+
