@@ -1,7 +1,6 @@
 package com.example.rpg.controller;
 
-import com.example.rpg.GameUtillMethod;
-import com.example.rpg.item.Item;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -57,8 +56,7 @@ public class StatusController {
     @FXML
     private ProgressBar expBar;
 
-    @FXML
-    private Button backStage;
+
 
     @FXML
     public void inputStatData() {

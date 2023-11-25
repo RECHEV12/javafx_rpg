@@ -37,8 +37,7 @@ public class ItemBoxController {
 
     @FXML
     public void showItem() {
-        System.out.println(user.getStatSTR());
-        System.out.println(user.getWeapon().getItemName());
+
         Insets inset = new Insets(10);
         BorderStroke stroke = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(2, 2, 2, 2));
         BorderStroke strokeA = new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, null, new BorderWidths(2, 0, 2, 0));

@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
@@ -23,8 +23,6 @@ import static com.example.rpg.GameUtillMethod.user;
 public class IntroController {
     @FXML
     private ToggleButton selectWarrior;
-    @FXML
-    private ToggleButton selectMagician;
     @FXML
     private Label title;
     @FXML

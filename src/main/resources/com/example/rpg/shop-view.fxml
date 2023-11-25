@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.rpg.controller.ShopController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="590.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg.controller.ShopController">
+    <children>
+        <Button fx:id="goBack" layoutX="16.0" layoutY="19.0" mnemonicParsing="false" onAction="#backStage" prefHeight="36.0" prefWidth="36.0" text="&lt;-" />
+        <Button fx:id="goHome" layoutX="56.0" layoutY="19.0" mnemonicParsing="false" onAction="#goHome" prefHeight="36.0" prefWidth="59.0" text="HOME" />
+        <Label fx:id="label" layoutX="158.0" layoutY="29.0" text="Label" />
+        <TabPane layoutX="17.0" layoutY="76.0" prefHeight="466.0" prefWidth="852.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="사용 아이템">
+                    <content>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                            <content>
+                                <VBox fx:id="itemVBox" prefHeight="434.0" prefWidth="851.0" />
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+                <Tab text="무기">
+                    <content>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                            <content>
+                                <VBox fx:id="weaponVBox" prefHeight="434.0" prefWidth="851.0" />
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+                <Tab text="방어구">
+                    <content>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                            <content>
+                                <VBox fx:id="equipVBox" prefHeight="434.0" prefWidth="851.0" />
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </AnchorPane>

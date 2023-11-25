@@ -1,20 +1,20 @@
 package com.example.rpg.controller;
 
 
+import com.example.rpg.UsefullMethod;
 import com.example.rpg.item.Item;
-
 import javafx.fxml.FXML;
+
 
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 
-import java.util.ArrayList;
+
 
 import static com.example.rpg.GameUtillMethod.user;
 
-
-public class UseItemController {
+public class BuyItemController {
     @FXML
     private Label plusSTR;
     @FXML
@@ -32,15 +32,13 @@ public class UseItemController {
     @FXML
     private Label plusMAXMP;
 
-    Label label;
-
-    int idx;
-    ArrayList<Item> itemList = user.getItemsList();
     static int nowHpRst;
     static int nowMpRst;
+    Item nowItem = new Item();
 
     @FXML
     public void showUpStat(Item item) {
+        nowItem = item;
         if (item.getItemType().equals("포션")) {
             plusSTR.setText(user.getStatSTR() + "(+" + item.getPlusSTR() + ") = " + (user.getStatSTR() + item.getPlusSTR()));
             plusDEX.setText(user.getStatDEX() + "(+" + item.getPlusDEX() + ") = " + (user.getStatDEX() + item.getPlusDEX()));
@@ -78,41 +76,6 @@ public class UseItemController {
 
     }
 
-    public static void updateEquips(Item useItem, Item beforeEQ) {
-        if (!useItem.isNowEq()) {
-            return;
-        }
-        if (useItem.getItemType().equals("포션")) {
-
-            user.setStatSTR(user.getStatSTR() + useItem.getPlusSTR());
-            user.setStatDEX(user.getStatDEX() + useItem.getPlusDEX());
-            user.setStatINT(user.getStatINT() + useItem.getPlusINT());
-            user.setStatLUK(user.getStatLUK() + useItem.getPlusLUK());
-
-
-            user.setStatMaxHP(user.getStatMaxHP() + useItem.getPlusMaxHP());
-            user.setStatMaxMP(user.getStatMaxMP() + useItem.getPlusMaxMP());
-
-            calRst(user.getStatNowHP() + useItem.getPlusNowHP(), user.getStatNowMP() + useItem.getPlusNowMP());
-
-            user.setStatNowHP(nowHpRst);
-            user.setStatNowMP(nowMpRst);
-
-
-        } else {
-            calRst(user.getStatNowHP() + useItem.getPlusNowHP() - beforeEQ.getPlusNowHP(), user.getStatNowMP() + useItem.getPlusNowMP() - beforeEQ.getPlusNowMP());
-            user.setStatSTR(user.getStatSTR() + useItem.getPlusSTR() - beforeEQ.getPlusSTR());
-            user.setStatDEX(user.getStatDEX() + useItem.getPlusDEX() - beforeEQ.getPlusDEX());
-            user.setStatINT(user.getStatINT() + useItem.getPlusINT() - beforeEQ.getPlusINT());
-            user.setStatLUK(user.getStatLUK() + useItem.getPlusLUK() - beforeEQ.getPlusLUK());
-            user.setStatMaxHP(user.getStatMaxHP() + useItem.getPlusMaxHP() - beforeEQ.getPlusMaxHP());
-            user.setStatMaxMP(user.getStatMaxMP() + useItem.getPlusMaxMP() - beforeEQ.getPlusMaxMP());
-            user.setStatNowHP(nowHpRst);
-            user.setStatNowMP(nowMpRst);
-
-            beforeEQ.setNowEq(false);
-        }
-    }
 
     protected static void calRst(int hp, int mp) {
         if (hp > user.getStatMaxHP()) {
@@ -129,29 +92,14 @@ public class UseItemController {
     }
 
     @FXML
-    protected void setItemEQ() {
-        Item item = itemList.get(idx);
-        item.setNowEq(true);
+    protected void buyItem() {
 
-        Item nowEQ = new Item();
-
-
-        if (item.getItemType().equals("무기")) {
-            nowEQ = user.getWeapon();
-            user.setWeapon(item);
-        } else if (item.getItemType().equals("방어구")) {
-            nowEQ = user.getEquip();
-            user.setEquip(item);
+        if (user.getMoney() - nowItem.getPrice() < 0) {
+            UsefullMethod.showAlertErr("돈이 부족합니다.");
+        } else {
+            user.getItemsList().add(nowItem);
+            user.setMoney(user.getMoney() - nowItem.getPrice());
         }
-
-        updateEquips(item, nowEQ);
-
-
-
-
-
-
-
         Stage stageA = (Stage) plusHP.getScene().getWindow();
         stageA.close();
 

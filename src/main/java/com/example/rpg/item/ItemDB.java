@@ -40,15 +40,9 @@ public class ItemDB {
 
     }
 
-    public ArrayList<Item> canUse = new ArrayList<>();
 
-    public ArrayList<Item> getCanUse() {
-        return canUse;
-    }
 
-    public void setCanUse(ArrayList<Item> canUse) {
-        this.canUse = canUse;
-    }
+
 
 
     @Override
@@ -62,7 +56,5 @@ public class ItemDB {
         return itemList;
     }
 
-    public void setItemList(ArrayList<Item> itemList) {
-        this.itemList = itemList;
-    }
+
 }

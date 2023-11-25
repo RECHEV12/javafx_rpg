@@ -77,7 +77,7 @@ public class BattleResultController {
 
             setUserExp();
 
-            expLabel.setText("경험치 " + exp + " 획득하였습니다!");
+            expLabel.setText("경험치를 " + exp + " 획득하였습니다!");
             if (user.getExp() >= user.getNextExp()) {
                 System.out.println(user.getPlayerClass());
                 levelUP(user);

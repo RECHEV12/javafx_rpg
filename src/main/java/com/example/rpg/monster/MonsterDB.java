@@ -1,7 +1,6 @@
 package com.example.rpg.monster;
 
-import com.example.rpg.GameUtillMethod;
-import static com.example.rpg.GameUtillMethod.user;
+
 
 import java.util.ArrayList;
 
@@ -37,10 +36,6 @@ public class MonsterDB {
     }
 
 
-    public void inputMonster(ArrayList A, int a) {
-        A.add(MonsterDB.getInstance().getMonsterList().get(a));
-    }
-
 
 
 
@@ -56,11 +51,5 @@ public class MonsterDB {
         return monsterList;
     }
 
-    public void setMonsterList(ArrayList<Monster> monsterList) {
-        this.monsterList = monsterList;
-    }
 
-    public MonsterDB(ArrayList<Monster> monsterList) {
-        this.monsterList = monsterList;
-    }
 }

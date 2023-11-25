@@ -1,6 +1,6 @@
 package com.example.rpg.controller;
 
-import com.example.rpg.GameUtillMethod;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 

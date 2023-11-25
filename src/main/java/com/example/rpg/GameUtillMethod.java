@@ -35,7 +35,7 @@ public class GameUtillMethod {
     }
 
     public static double random5perRare() {
-        double a = 0;
+        double a;
         int ab = makeRandom(1, 100);
         if (ab >= 1 && ab <= 5) {
             a = 1.5;

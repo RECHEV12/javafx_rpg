@@ -12,7 +12,7 @@
    <children>
       <Button fx:id="goBack" layoutX="16.0" layoutY="19.0" mnemonicParsing="false" onAction="#backStage" prefHeight="36.0" prefWidth="36.0" text="&lt;-" />
       <Button fx:id="goHome" layoutX="56.0" layoutY="19.0" mnemonicParsing="false" onAction="#goHome" prefHeight="36.0" prefWidth="59.0" text="HOME" />
-      <Label fx:id="label" layoutX="158.0" layoutY="29.0" text="Label" />
+      <Label fx:id="label" layoutX="158.0" layoutY="29.0" />
       <TabPane layoutX="17.0" layoutY="76.0" prefHeight="466.0" prefWidth="852.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="사용 아이템">

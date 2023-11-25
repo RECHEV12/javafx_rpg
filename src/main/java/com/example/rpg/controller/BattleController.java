@@ -102,7 +102,7 @@ public class BattleController {
         if (isRare == 0) {
             mobName = nowMob.getMonsterName();
         } else {
-            mobName = "!!!" + nowMob.getMonsterName();
+            mobName = "레어 개체 : " + nowMob.getMonsterName();
         }
         monsterName.setText(mobName);
         monsterWeak.setText("약점 : " + nowMob.getMonsterType());
@@ -402,10 +402,7 @@ public class BattleController {
     }
 
     public void userItem(Item item) {
-        if (!Battle.isDisable()){
-            showAlertWarn("전투 시작을 눌러주세요");
-            return;
-        }
+
         ArrayList<Label> temp = new ArrayList<>();
 
         user.setStatMaxHP(user.getStatMaxHP() + item.getPlusMaxHP());
@@ -442,11 +439,6 @@ public class BattleController {
     }
 
     public void movePlayer(Skill skill) {
-
-        if (!Battle.isDisable()){
-            showAlertWarn("전투 시작을 눌러주세요");
-            return;
-        }
         if (user.getStatNowMP() < skill.getUseMp()) {
             showAlertErr("마나가 부족합니다.");
             return;
@@ -506,7 +498,7 @@ public class BattleController {
             movePlayerLabelList.add(logF);
             movePlayerLabelList.add(logG);
             movePlayerLabelList.add(logH);
-            logA.setText(user.getPlayerName() + "의 행동속도는 " + playerDiceNum + "!!");
+            logA.setText(user.getPlayerName() + "의 행동 속도는 " + playerDiceNum + "!!");
             logH.setText("턴 종료. 다음턴으로 넘어갑니다");
             if (playerDiceNum >= monsterDiceNum) {
                 logB.setText(user.getPlayerName() + "의 선공!");

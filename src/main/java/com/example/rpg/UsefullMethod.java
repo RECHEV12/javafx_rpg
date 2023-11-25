@@ -1,19 +1,15 @@
 package com.example.rpg;
 
 import com.example.rpg.controller.*;
-import com.example.rpg.item.Item;
-import com.example.rpg.monster.Monster;
-import com.example.rpg.skill.Skill;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import com.example.rpg.character.Class;
-import java.io.IOException;
-import java.lang.reflect.Method;
 
-import static com.example.rpg.GameUtillMethod.*;
+import java.io.IOException;
+
 
 /**
  * 화면 전환 메소드
@@ -94,7 +90,23 @@ public class UsefullMethod {
         }
 
     }
+public static void goShop(Label nowLabel) {
+    Stage stage = (Stage) nowLabel.getScene().getWindow();
+    startStage = stage.getTitle();
+    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("shop-view.fxml"));
 
+    try {
+        Scene scene = new Scene(fxmlLoader.load());
+        ShopController statControl = fxmlLoader.getController();
+        statControl.showItem();
+        stage.setScene(scene);
+        stage.setTitle("shop");
+        stage.show();
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+}
     public static void goField(Label nowLabel) {
         Stage stage = (Stage) nowLabel.getScene().getWindow();
         startStage = stage.getTitle();
@@ -134,6 +146,7 @@ public class UsefullMethod {
             Scene scene = new Scene(fxmlLoader.load());
             BattleController bc = fxmlLoader.getController();
             bc.showMonster();
+            bc.doBattle();
             stage.setScene(scene);
             stage.setTitle("battle");
             stage.show();
@@ -241,8 +254,21 @@ public class UsefullMethod {
                     Scene scene = new Scene(fxmlLoader.load());
                     BattleController bc = fxmlLoader.getController();
                     bc.showMonster();
+                    bc.doBattle();
                     stage.setScene(scene);
                     stage.setTitle("battle");
+                    stage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            case  "shop":
+                try {
+                    Scene scene = new Scene(fxmlLoader.load());
+                    ShopController statControl = fxmlLoader.getController();
+                    statControl.showItem();
+                    stage.setScene(scene);
+                    stage.setTitle("shop");
                     stage.show();
                 } catch (IOException e) {
                     throw new RuntimeException(e);

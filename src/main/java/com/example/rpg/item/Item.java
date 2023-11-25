@@ -1,6 +1,5 @@
 package com.example.rpg.item;
 
-import java.util.ArrayList;
 
 
 
@@ -64,89 +63,59 @@ public class Item {
         return itemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
+
 
     public String getItemType() {
         return itemType;
     }
 
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
-    }
 
     public int getPlusSTR() {
         return plusSTR;
     }
 
-    public void setPlusSTR(int plusSTR) {
-        this.plusSTR = plusSTR;
-    }
+
 
     public int getPlusDEX() {
         return plusDEX;
     }
 
-    public void setPlusDEX(int plusDEX) {
-        this.plusDEX = plusDEX;
-    }
+
 
     public int getPlusINT() {
         return plusINT;
     }
 
-    public void setPlusINT(int plusINT) {
-        this.plusINT = plusINT;
-    }
 
     public int getPlusLUK() {
         return plusLUK;
     }
 
-    public void setPlusLUK(int plusLUK) {
-        this.plusLUK = plusLUK;
-    }
 
     public int getPlusNowHP() {
         return plusNowHP;
     }
 
-    public void setPlusNowHP(int plusNowHP) {
-        this.plusNowHP = plusNowHP;
-    }
 
     public int getPlusMaxHP() {
         return plusMaxHP;
     }
 
-    public void setPlusMaxHP(int plusMaxHP) {
-        this.plusMaxHP = plusMaxHP;
-    }
 
     public int getPlusNowMP() {
         return plusNowMP;
     }
 
-    public void setPlusNowMP(int plusNowMP) {
-        this.plusNowMP = plusNowMP;
-    }
 
     public int getPlusMaxMP() {
         return plusMaxMP;
     }
 
-    public void setPlusMaxMP(int plusMaxMP) {
-        this.plusMaxMP = plusMaxMP;
-    }
 
     public String getItemDetail() {
         return itemDetail;
     }
 
-    public void setItemDetail(String itemDetail) {
-        this.itemDetail = itemDetail;
-    }
 
     public boolean isNowEq() {
         return isNowEq;
@@ -160,9 +129,6 @@ public class Item {
         return dropMob;
     }
 
-    public void setDropMob(String dropMob) {
-        this.dropMob = dropMob;
-    }
 
     public int getPrice() {
         return price;

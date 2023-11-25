@@ -4,9 +4,6 @@ public class Level {
    private int levelNow; /*현재 레벨*/
     private int levelExp; /*레벨 다음 레벨업에 필요한 경험치*/
 
-    public Level() {
-    }
-
     public Level(int levelNow, int levelExp) {
         this.levelNow = levelNow;
         this.levelExp = levelExp;
@@ -23,16 +20,11 @@ public class Level {
         return levelNow;
     }
 
-    public void setLevelNow(int levelNow) {
-        this.levelNow = levelNow;
-    }
 
     public int getLevelExp() {
         return levelExp;
     }
 
-    public void setLevelExp(int levelExp) {
-        this.levelExp = levelExp;
-    }
+
 }
 

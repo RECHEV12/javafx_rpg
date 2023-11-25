@@ -61,9 +61,7 @@ public class Class {
         return playerClass;
     }
 
-    public void setPlayerClass(String playerClass) {
-        this.playerClass = playerClass;
-    }
+
 
     public String getPlayerName() {
         return playerName;
@@ -197,15 +195,10 @@ public class Class {
         return playerSkillList;
     }
 
-    public void setPlayerSkillList(ArrayList<Skill> playerSkillList) {
-        this.playerSkillList = playerSkillList;
-    }
 
     public ArrayList<Item> getItemsList() {
         return itemsList;
     }
 
-    public void setItemsList(ArrayList<Item> itemsList) {
-        this.itemsList = itemsList;
-    }
+
 }
