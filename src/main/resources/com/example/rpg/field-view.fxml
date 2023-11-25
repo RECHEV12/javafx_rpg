@@ -10,7 +10,7 @@
     <children>
         <Button fx:id="goBack" layoutX="16.0" layoutY="19.0" mnemonicParsing="false" onAction="#backStage" prefHeight="36.0" prefWidth="36.0" text="&lt;-" />
         <Button fx:id="goHome" layoutX="56.0" layoutY="19.0" mnemonicParsing="false" onAction="#goHome" prefHeight="36.0" prefWidth="59.0" text="HOME" />
-        <Label fx:id="label" layoutX="158.0" layoutY="29.0" text="Label" />
+        <Label fx:id="label" layoutX="158.0" layoutY="29.0" text="Label" onMouseClicked="#lvUPUPUP" />
         <Button layoutX="83.0" layoutY="154.0" mnemonicParsing="false" text="드넓은 평원" onAction="#goFirstField"/>
         <Button layoutX="218.0" layoutY="154.0" mnemonicParsing="false" text="무너진 성터" onAction="#goSecondField"/>
         <Button layoutX="470.0" layoutY="178.0" mnemonicParsing="false" text="옛 전쟁터" onAction="#goThirdField"/>

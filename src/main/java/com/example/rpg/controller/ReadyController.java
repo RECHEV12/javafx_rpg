@@ -24,7 +24,7 @@ public class ReadyController {
 
     @FXML
     public void backStage() {
-        goBack(fieldName);
+        goField(fieldName);
     }
 
     @FXML
