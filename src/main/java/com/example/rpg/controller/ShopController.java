@@ -51,7 +51,6 @@ public class ShopController {
 
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
-            int index = i;
             VBox nowBox;
             if (item.getItemType().equals("무기")) {
                 nowBox = weaponVBox;
@@ -200,7 +199,7 @@ public class ShopController {
             useBtn.setText("구매");
             useBtn.setPrefWidth(fourthBox.getPrefWidth());
             useBtn.setAlignment(Pos.CENTER);
-            useBtn.setOnAction(event -> showItemPopup(item, index, label));
+            useBtn.setOnAction(event -> showItemPopup(item));
 
             String temp;
             if (item.isNowEq()) {
@@ -237,7 +236,7 @@ public class ShopController {
 
     }
 
-    public void showItemPopup(Item item, int index, Label label) {
+    public void showItemPopup(Item item) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("buyItem-view.fxml"));
             Parent root = fxmlLoader.load();
