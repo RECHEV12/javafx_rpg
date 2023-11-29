@@ -42,6 +42,15 @@
                         </ScrollPane>
                     </content>
                 </Tab>
+            <Tab text="아이템박스">
+               <content>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <VBox fx:id="userItemBox" prefHeight="434.0" prefWidth="851.0" />
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
             </tabs>
         </TabPane>
     </children>

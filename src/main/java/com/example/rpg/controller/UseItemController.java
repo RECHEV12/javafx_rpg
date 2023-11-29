@@ -133,6 +133,8 @@ public class UseItemController {
         Item item = itemList.get(idx);
         item.setNowEq(true);
 
+
+
         Item nowEQ = new Item();
 
 
@@ -142,6 +144,8 @@ public class UseItemController {
         } else if (item.getItemType().equals("방어구")) {
             nowEQ = user.getEquip();
             user.setEquip(item);
+        }else if (item.getItemType().equals("포션")){
+            itemList.remove(idx);
         }
 
         updateEquips(item, nowEQ);

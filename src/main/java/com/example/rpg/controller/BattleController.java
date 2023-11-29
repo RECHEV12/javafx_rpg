@@ -48,6 +48,8 @@ public class BattleController {
     @FXML
     private Label userName;
     @FXML
+    private Label userLv;
+    @FXML
     private ProgressBar userHpBar;
     @FXML
     private ProgressBar userMpBar;
@@ -131,6 +133,7 @@ public class BattleController {
 
 
         userName.setText(user.getPlayerName());
+        userLv.setText(user.getLv() +"");
         setUserHp();
         setUserMp();
         setUserExp();
@@ -147,6 +150,7 @@ public class BattleController {
     public void doBattle() {
         if (user.getStatNowHP() == 0) {
             changeHome(monsterHpLabel);
+            nowMob = new Monster();
         }
         if (nowMob.getMonsterHP() == 0) {
             nowTurn = 1;
@@ -220,10 +224,13 @@ public class BattleController {
 
     public void setUserExp() {
         double userExpBarNum = (double) user.getExp() / user.getNextExp();
+        if (userExpBarNum <= 0) {
+            userExpBarNum = 0;
+        }
 
         Timeline timeline = new Timeline();
 
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0), new KeyValue(userExpBar.progressProperty(), userExpBarNum));
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), new KeyValue(userExpBar.progressProperty(), userExpBarNum));
 
         timeline.getKeyFrames().add(keyFrame);
 
@@ -516,7 +523,7 @@ public class BattleController {
                     listFilterAndAdd(movePlayerLabelList);
 
                 } else {
-                    attackFromMob(nowMob, userDmgTotal, logE, logF);
+                    attackFromMob(nowMob, logE, logF);
                     if (user.getStatNowHP() == 0) {
                         user.setExp(0);
                         logG.setText("죽었습니다. 경험치가 0이 되고, 마을로 돌아갑니다.");
@@ -526,7 +533,7 @@ public class BattleController {
                 }
             } else {
                 logB.setText(nowMob.getMonsterName() + "의 선공!");
-                attackFromMob(nowMob, userDmgTotal, logC, logD);
+                attackFromMob(nowMob, logC, logD);
                 if (user.getStatNowHP() == 0) {
                     user.setExp(0);
                     logG.setText("죽었습니다. 경험치가 0이 되고, 마을로 돌아갑니다.");
@@ -556,14 +563,14 @@ public class BattleController {
         b.setText(mob.getMonsterName() + "은(는) " + dmg + "대미지를 입어 체력이 " + mob.getMonsterHP() + "이(가) 되었다!");
     }
 
-    public void attackFromMob(Monster mob, int dmg, Label a, Label b) {
+    public void attackFromMob(Monster mob, Label a, Label b) {
         int result = 0;
         if (!(user.getStatNowHP() - mobDmgTotal <= 0)) {
             result = user.getStatNowHP() - mobDmgTotal;
         }
         user.setStatNowHP(result);
         setUserHp();
-        a.setText(mob.getMonsterName() + "의 " + dmg + "대미지!!");
+        a.setText(mob.getMonsterName() + "의 " + mobDmgTotal + "대미지!!");
         b.setText(user.getPlayerName() + "은(는) " + mobDmgTotal + "의 대미지를 입어 체력이 " + user.getStatNowHP() + "이(가) 되었다.");
     }
 

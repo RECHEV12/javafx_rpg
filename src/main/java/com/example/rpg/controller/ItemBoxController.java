@@ -42,11 +42,10 @@ public class ItemBoxController {
         BorderStroke stroke = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(2, 2, 2, 2));
         BorderStroke strokeA = new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, null, new BorderWidths(2, 0, 2, 0));
         BorderStroke strokeB = new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, null, new BorderWidths(0, 2, 0, 2));
-        BorderStroke test1 = new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, null, new BorderWidths(2, 2, 2, 2));
         Border border = new Border(stroke);
         Border borderA = new Border(strokeA);
         Border borderB = new Border(strokeB);
-        Border test = new Border(test1);
+
 
         for (int i = 0; i < itemList.size(); i++) {
             Item item = itemList.get(i);
@@ -59,11 +58,6 @@ public class ItemBoxController {
                 nowBox = equipVBox;
             } else {
                 nowBox = itemVBox;
-                if (item.isNowEq()){
-                    itemList.remove(item);
-                    i--;
-                    continue;
-                }
             }
 
 

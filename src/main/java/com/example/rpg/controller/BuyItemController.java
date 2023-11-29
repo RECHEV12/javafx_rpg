@@ -94,11 +94,11 @@ public class BuyItemController {
     @FXML
     protected void buyItem() {
 
-        if (user.getMoney() - nowItem.getPrice() < 0) {
+        if (user.getMoney() - (nowItem.getPrice()*2) < 0) {
             UsefullMethod.showAlertErr("돈이 부족합니다.");
         } else {
             user.getItemsList().add(nowItem);
-            user.setMoney(user.getMoney() - nowItem.getPrice());
+            user.setMoney(user.getMoney() - (nowItem.getPrice()*2));
         }
         Stage stageA = (Stage) plusHP.getScene().getWindow();
         stageA.close();
