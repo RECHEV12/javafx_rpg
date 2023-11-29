@@ -197,7 +197,7 @@ public class ShopController {
             thirdBox.getChildren().addAll(setHP, setMP);
 
             Button useBtn = new Button();
-            useBtn.setText("사용/장착");
+            useBtn.setText("구매");
             useBtn.setPrefWidth(fourthBox.getPrefWidth());
             useBtn.setAlignment(Pos.CENTER);
             useBtn.setOnAction(event -> showItemPopup(item, index, label));

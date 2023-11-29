@@ -26,6 +26,27 @@ public class GameUtillMethod {
         return (int) ((Math.random() * (b - a + 1)) + a);
     }
 
+    public static int makeRandomLuk(int userLuk) {
+        int a = 0;
+        int b = 0;
+        switch (userLuk) {
+            case 10:
+                b = 1;
+                break;
+            case 20:
+                b = 2;
+                break;
+            case 30:
+                b = 3;
+                break;
+            case 40:
+                b = 4;
+                break;
+        }
+
+        return (int) ((Math.random() * (b - a + 1)) + a);
+    }
+
     public static double myRound(double num, int n) {
         int bai = 1;
         for (int i = 0; i < n; i++) {
@@ -110,6 +131,7 @@ public class GameUtillMethod {
         int exp = (int) myRound(((a.getMonsterLv() * 3) + (a.getMonsterGroup() * rare)), 1);
         return exp;
     }
+
     public static int getMoney(Monster a, int b) {
         double rare;
         if (b == 0) {
@@ -120,6 +142,7 @@ public class GameUtillMethod {
         int money = (int) myRound((a.getMonsterLv() * (a.getMonsterGroup() * rare)) * 50, 1);
         return money;
     }
+
     public static Item dropItem(Monster a) {
         //todo 아이템 레어도에 따른 드랍률 조정
         ArrayList<Item> temp = new ArrayList<>();
@@ -142,42 +165,44 @@ public class GameUtillMethod {
         }
         return tempItem;
     }
+
     public static int random5perInt() {
         int a = makeRandom(1, 100);
         int b = 0;
-        if (a >=0 && a <=5){
-            b= 1;
+        if (a >= 0 && a <= 5) {
+            b = 1;
         }
         return b;
     }
+
     public static void levelUP(Class user) {
 
 
-                if (user.getPlayerClass().equals("전사")) {
-                    user.setStatSTR(user.getStatSTR() + 3);
-                    user.setStatDEX(user.getStatDEX() + 2);
-                    user.setStatINT(user.getStatINT() + 1);
-                    user.setStatNowHP(user.getStatNowHP() + 5);
-                    user.setStatMaxHP(user.getStatMaxHP() + 12);
-                    user.setStatNowMP(user.getStatNowMP() + 8);
-                    user.setStatMaxMP(user.getStatMaxMP() + 8);
-                    user.setStatLUK(user.getStatLUK() + 1);
-                    user.setExtraStat(user.getExtraStat() + 4);
+        if (user.getPlayerClass().equals("전사")) {
+            user.setStatSTR(user.getStatSTR() + 3);
+            user.setStatDEX(user.getStatDEX() + 2);
+            user.setStatINT(user.getStatINT() + 1);
+            user.setStatNowHP(user.getStatNowHP() + 5);
+            user.setStatMaxHP(user.getStatMaxHP() + 12);
+            user.setStatNowMP(user.getStatNowMP() + 8);
+            user.setStatMaxMP(user.getStatMaxMP() + 8);
+            user.setStatLUK(user.getStatLUK() + 1);
+            user.setExtraStat(user.getExtraStat() + 4);
 
 
-                }
-                if (user.getPlayerClass().equals("마법사")) {
-                    user.setStatSTR(user.getStatSTR() + 1);
-                    user.setStatDEX(user.getStatDEX() + 1);
-                    user.setStatINT(user.getStatINT() + 4);
-                    user.setStatNowHP(user.getStatNowHP() + 5);
-                    user.setStatMaxHP(user.getStatMaxHP() + 10);
-                    user.setStatNowMP(user.getStatNowMP() + 12);
-                    user.setStatMaxMP(user.getStatMaxMP() + 12);
-                    user.setStatLUK(user.getStatLUK() + 1);
-                    user.setExtraStat(user.getExtraStat() + 4);
+        }
+        if (user.getPlayerClass().equals("마법사")) {
+            user.setStatSTR(user.getStatSTR() + 1);
+            user.setStatDEX(user.getStatDEX() + 1);
+            user.setStatINT(user.getStatINT() + 4);
+            user.setStatNowHP(user.getStatNowHP() + 5);
+            user.setStatMaxHP(user.getStatMaxHP() + 10);
+            user.setStatNowMP(user.getStatNowMP() + 12);
+            user.setStatMaxMP(user.getStatMaxMP() + 12);
+            user.setStatLUK(user.getStatLUK() + 1);
+            user.setExtraStat(user.getExtraStat() + 4);
 
-                }
+        }
 
 
     }
@@ -211,6 +236,7 @@ public class GameUtillMethod {
         return skillLabel;
 
     }
+
     public static int getNextExp(int userLv) {
         int nextLevel = 0;
         LevelDB levelDB = LevelDB.getInstance();
@@ -221,6 +247,7 @@ public class GameUtillMethod {
         }
         return nextLevel;
     }
+
     public static double criticalReturn(Class user) {
         double crtical;
         if (user.getStatLUK() >= 100) {
@@ -241,15 +268,14 @@ public class GameUtillMethod {
     }
 
     public static int getUserDamage(Class user, Skill skr, Monster mob) {
-        int strDamage = (int)myRound(user.getStatSTR() * (skr.getPerStr() /(double) 100),1);
-        int intDamage = (int)myRound(user.getStatINT() * (skr.getPerInt()/ (double)100),1);
+        int strDamage = (int) myRound(user.getStatSTR() * (skr.getPerStr() / (double) 100), 1);
+        int intDamage = (int) myRound(user.getStatINT() * (skr.getPerInt() / (double) 100), 1);
 
         double typeCritical = 1;
         if ((skr.getSkillType().equals("참격") && mob.getMonsterType().equals("참격약점")) ||
                 (skr.getSkillType().equals("마법") && mob.getMonsterType().equals("마법약점"))) {
             typeCritical = 1.3;
         }
-
 
 
         double totalDamage = ((strDamage + intDamage) * (typeCritical)) * (criticalReturn(user));

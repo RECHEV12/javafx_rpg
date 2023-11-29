@@ -137,13 +137,15 @@ public class BattleController {
         setUserSkill();
         setUserItem();
     }
-    public void runBattle(){
+
+    public void runBattle() {
         nowMob = new Monster();
         goReady(monsterHpLabel);
     }
+
     @FXML
     public void doBattle() {
-        if (user.getStatNowHP() == 0){
+        if (user.getStatNowHP() == 0) {
             changeHome(monsterHpLabel);
         }
         if (nowMob.getMonsterHP() == 0) {
@@ -479,6 +481,11 @@ public class BattleController {
             userDmgTotal = getUserDamage(user, skill, nowMob);
 
             playerDiceNum = makeRandom(1, 6);
+             playerDiceNum = playerDiceNum + makeRandomLuk(user.getStatLUK());
+             if (playerDiceNum>6){
+                 playerDiceNum = 6;
+             }
+
             String mobDice = "/images/" + playerDiceNum + ".jpg";
             Image mobImg = new Image(Objects.requireNonNull(getClass().getResource(mobDice)).toExternalForm());
             userDice.setImage(mobImg);
